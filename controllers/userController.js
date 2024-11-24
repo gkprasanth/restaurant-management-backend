@@ -3,7 +3,10 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 const registerUser = async (req, res) => {
-  const { name, email, password, role, tableNumber } = req.body;
+  const { name, email, password, tableNumber } = req.body;
+
+  // Default role to "customer" if not provided
+  const role = req.body.role || "customer";
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -20,6 +23,7 @@ const registerUser = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;

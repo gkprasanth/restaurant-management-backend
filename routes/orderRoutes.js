@@ -23,16 +23,8 @@ router.put('/orders/:id/status', orderController.updateOrderStatus); // Update o
 //       res.status(500).json({ error: 'Failed to clear orders.' });
 //     }
 //   });
-  router.delete('/orders/clear/:tableNumber', async (req, res) => {
-    const tableNumber = req.params.tableNumber;
-    try {
-      // Logic to clear orders for the table
-      await Orders.deleteMany({ tableNumber });
-      res.status(200).json({ message: `Orders for table ${tableNumber} cleared.` });
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to clear orders.' });
-    }
-  });
+router.delete('/clear/:tableNumber', orderController.clearTable);
+
     
 
 module.exports = router;

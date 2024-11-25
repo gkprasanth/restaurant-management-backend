@@ -77,3 +77,23 @@ exports.updateOrderStatus = async (req, res) => {
         res.status(500).json({ success: false, message: 'Error updating order status' });
     }
 };
+
+
+// Clear all orders for a specific table
+exports.clearTable = async (req, res) => {
+    try {
+        const { tableNumber } = req.params; // Get table number from URL params
+        
+        // Delete all orders for the given table
+        const result = await Order.deleteMany({ tableNumber });
+        
+        if (result.deletedCount === 0) {
+            return res.status(404).json({ success: false, message: 'No orders found for this table' });
+        }
+
+        res.status(200).json({ success: true, message: `Cleared all orders for table ${tableNumber}` });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Error clearing table orders' });
+    }
+};

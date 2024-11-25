@@ -13,26 +13,26 @@ router.get('/orders/:tableNumber', orderController.getOrdersByTableNumber); // F
 
 // Update order status (e.g., 'pending', 'confirmed', 'completed', 'cancelled')
 router.put('/orders/:id/status', orderController.updateOrderStatus); // Update order status by ID
-app.delete('/orders/clear/:tableNumber', async (req, res) => {
+// app.delete('/orders/clear/:tableNumber', async (req, res) => {
+//     const tableNumber = req.params.tableNumber;
+//     try {
+//       // Logic to clear orders for the table
+//       await Orders.deleteMany({ tableNumber });
+//       res.status(200).json({ message: `Orders for table ${tableNumber} cleared.` });
+//     } catch (error) {
+//       res.status(500).json({ error: 'Failed to clear orders.' });
+//     }
+//   });
+  router.delete('/orders/clear/:tableNumber', async (req, res) => {
     const tableNumber = req.params.tableNumber;
     try {
-        // Logic to clear orders for the table
-        await Orders.deleteMany({ tableNumber });
-        res.status(200).json({ message: `Orders for table ${tableNumber} cleared.` });
+      // Logic to clear orders for the table
+      await Orders.deleteMany({ tableNumber });
+      res.status(200).json({ message: `Orders for table ${tableNumber} cleared.` });
     } catch (error) {
-        res.status(500).json({ error: 'Failed to clear orders.' });
+      res.status(500).json({ error: 'Failed to clear orders.' });
     }
-});
-router.delete('/orders/clear/:tableNumber', async (req, res) => {
-    const tableNumber = req.params.tableNumber;
-    try {
-        // Logic to clear orders for the table
-        await Orders.deleteMany({ tableNumber });
-        res.status(200).json({ message: `Orders for table ${tableNumber} cleared.` });
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to clear orders.' });
-    }
-});
-
+  });
+    
 
 module.exports = router;

@@ -23,7 +23,7 @@ router.put('/orders/:id/status', orderController.updateOrderStatus); // Update o
 //       res.status(500).json({ error: 'Failed to clear orders.' });
 //     }
 //   });
-router.delete('/clear/:tableNumber', orderController.clearTable);
+router.delete("/orders/table/clear/:tableNumber", orderController.clearTable);
 
     
 

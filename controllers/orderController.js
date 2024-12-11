@@ -94,3 +94,15 @@ exports.clearTable = async (req, res) => {
     }
 };
 
+
+exports.clearAllOrders = async (req, res) => {
+    try {
+        const result = await Order.deleteMany(); // Deletes all documents in the collection
+        res.status(200).json({ success: true, message: `Cleared all orders (${result.deletedCount} orders deleted)` });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Error clearing all orders' });
+    }
+};
+
+

@@ -24,7 +24,7 @@ router.put('/orders/:id/status', orderController.updateOrderStatus); // Update o
 //     }
 //   });
 router.delete("/orders/table/clear/:tableNumber", orderController.clearTable);
-
+router.delete('/orders', orderController.clearAllOrders);
     
 
 module.exports = router;

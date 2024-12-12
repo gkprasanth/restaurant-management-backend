@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 });
 app.use("/api/users", userRoutes);
 const orderRoutes = require('./routes/orderRoutes');  // Import your routes
-app.use(orderRoutes); // Use the routes in your app
+app.use("/api",orderRoutes); // Use the routes in your app
 app.use("/menu", menuRoutes);
 
 // Start Server
